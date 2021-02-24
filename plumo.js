@@ -4,8 +4,11 @@ const PLUMO_LEFT = document.getElementById('plumo-left').innerHTML;
 const PLUMO_LEAVING = document.getElementById('plumo-leaving').innerHTML;
 
 const Plumo = {
-  init: function(container) {
+  init: function(container, buttons) {
+
     this.container = container
+    this.btns = buttons
+
     this.fsm = new StateMachine({
       init: 'none',
       transitions: [
@@ -26,9 +29,18 @@ const Plumo = {
         },
         onQuit: ()=>{
           this.container.innerHTML = PLUMO_LEAVING
+          this.btns.leaveBtn.setAttribute('disabled', true)
+          this.btns.eatBtn.setAttribute('disabled', true)
+          this.btns.listenBtn.setAttribute('disabled', true)
         }
       }
     });
+
+    this.btns.leaveBtn.addEventListener('click', ()=> { this.leave(); })
+    this.btns.eatBtn.addEventListener('click', ()=> { this.eat(); })
+    //this.btns.waitBtn.addEventListener('click', ()=> { this.wait(); })
+    this.btns.listenBtn.addEventListener('click', ()=> { this.listen(); })
+
     this.wait()
   },
   listen: function () {

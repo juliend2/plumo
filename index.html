@@ -94,27 +94,27 @@
 
 <pre id="house">
 </pre>
+
   <button id="listen-btn">Hey!</button>
   <button id="eat-btn">Nourrir</button>
-  <button id="left-btn">Regarder</button>
+  <!--<button id="left-btn">Attendre</button> -->
   <button id="leave-btn">Quitter</button>
 
   <script src="state-machine.min.js"></script>
   <script src="plumo.js"></script>
   <script>
 
-
   const leaveBtn = document.getElementById('leave-btn')
   const eatBtn = document.getElementById('eat-btn')
-  const leftBtn = document.getElementById('left-btn')
+  //const leftBtn = document.getElementById('left-btn')
   const listenBtn = document.getElementById('listen-btn')
 
-  leaveBtn.addEventListener('click', ()=> { Plumo.leave(); })
-  eatBtn.addEventListener('click', ()=> { Plumo.eat(); })
-  leftBtn.addEventListener('click', ()=> { Plumo.wait(); })
-  listenBtn.addEventListener('click', ()=> { Plumo.listen(); })
-
-  Plumo.init( document.getElementById('house') )
+  Plumo.init( document.getElementById('house'), {
+    leaveBtn: leaveBtn,
+    eatBtn: eatBtn,
+    //waitBtn: leftBtn,
+    listenBtn: listenBtn
+  } )
 
   </script>
   </body>
