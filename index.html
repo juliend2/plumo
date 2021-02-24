@@ -99,10 +99,10 @@
   <button id="left-btn">Regarder</button>
   <button id="leave-btn">Quitter</button>
 
+  <script src="state-machine.min.js"></script>
   <script src="plumo.js"></script>
   <script>
 
-  Plumo.init( document.getElementById('house') )
 
   const leaveBtn = document.getElementById('leave-btn')
   const eatBtn = document.getElementById('eat-btn')
@@ -111,8 +111,10 @@
 
   leaveBtn.addEventListener('click', ()=> { Plumo.leave(); })
   eatBtn.addEventListener('click', ()=> { Plumo.eat(); })
-  leftBtn.addEventListener('click', ()=> { Plumo.left(); })
+  leftBtn.addEventListener('click', ()=> { Plumo.wait(); })
   listenBtn.addEventListener('click', ()=> { Plumo.listen(); })
+
+  Plumo.init( document.getElementById('house') )
 
   </script>
   </body>
