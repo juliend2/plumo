@@ -25,29 +25,27 @@ const Plumo = {
       ],
       methods: {
         onEat: ()=>{
-          this.container.innerHTML = PLUMO_EATING
-          this.btns.eatBtn.setAttribute('disabled', true)
+          this._changeFrame(PLUMO_EATING, "croc croc croc.. c'est bon.")
+          this._disableAllButtons();
           delay(DEUX_SECONDES).then(()=>{
+            this._enableAllButtons();
             this.wait()
-            this.btns.eatBtn.removeAttribute('disabled')
           })
         },
         onListen: ()=>{
-          this.container.innerHTML = PLUMO_LISTENING
-          this.btns.listenBtn.setAttribute('disabled', true)
+          this._changeFrame(PLUMO_LISTENING, "Oui?")
+          this._disableAllButtons();
           delay(DEUX_SECONDES).then(()=>{
+            this._enableAllButtons();
             this.wait()
-            this.btns.listenBtn.removeAttribute('disabled')
           })
         },
         onWait: ()=>{
-          this.container.innerHTML = PLUMO_LEFT
+          this._changeFrame(PLUMO_LEFT, "")
         },
         onQuit: ()=>{
-          this.container.innerHTML = PLUMO_LEAVING
-          this.btns.leaveBtn.setAttribute('disabled', true)
-          this.btns.eatBtn.setAttribute('disabled', true)
-          this.btns.listenBtn.setAttribute('disabled', true)
+          this._changeFrame(PLUMO_LEAVING, "Bye Alice! À la prochaine!")
+          this._disableAllButtons();
         }
       }
     });
@@ -70,5 +68,18 @@ const Plumo = {
   },
   leave: function() {
     this.fsm.quit();
+  },
+  _changeFrame: function(html, message = '') {
+    this.container.innerHTML = html.replace('$MSG$', message);
+  },
+  _disableAllButtons: function() {
+    this.btns.listenBtn.setAttribute('disabled', true)
+    this.btns.leaveBtn.setAttribute('disabled', true)
+    this.btns.eatBtn.setAttribute('disabled', true)
+  },
+  _enableAllButtons: function() {
+    this.btns.listenBtn.removeAttribute('disabled')
+    this.btns.leaveBtn.removeAttribute('disabled')
+    this.btns.eatBtn.removeAttribute('disabled')
   }
 }
