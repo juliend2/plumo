@@ -3,6 +3,12 @@ const PLUMO_EATING = document.getElementById('plumo-eating').innerHTML;
 const PLUMO_LEFT = document.getElementById('plumo-left').innerHTML;
 const PLUMO_LEAVING = document.getElementById('plumo-leaving').innerHTML;
 
+const DEUX_SECONDES = 2000
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const Plumo = {
   init: function(container, buttons) {
 
@@ -20,9 +26,19 @@ const Plumo = {
       methods: {
         onEat: ()=>{
           this.container.innerHTML = PLUMO_EATING
+          this.btns.eatBtn.setAttribute('disabled', true)
+          delay(DEUX_SECONDES).then(()=>{
+            this.wait()
+            this.btns.eatBtn.removeAttribute('disabled')
+          })
         },
         onListen: ()=>{
           this.container.innerHTML = PLUMO_LISTENING
+          this.btns.listenBtn.setAttribute('disabled', true)
+          delay(DEUX_SECONDES).then(()=>{
+            this.wait()
+            this.btns.listenBtn.removeAttribute('disabled')
+          })
         },
         onWait: ()=>{
           this.container.innerHTML = PLUMO_LEFT
