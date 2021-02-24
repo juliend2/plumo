@@ -8,7 +8,7 @@
 
 
 
-<script type="template/html" id="plumo-attentive">
+<script type="template/html" id="plumo-listening">
                       .".
                      /  |
                     /  /
@@ -60,14 +60,14 @@
       / // /
     .'  ' (
    /       \.-"""-._
-  / a   ' .    '    `-.
- (       .  '      "   `.
-  `-.-'       "       '  ;
-      `.'  "  .  .-'    " ;
-       : .     .'          ;
-       `.   ' :     '   '  ;
-         )  _.". "     .  ";
-       .'_.'   .'   '  __.,`.
+  / a     .         `-.
+ (       .             `.
+  `-.-'                  ;
+      `.'        .-'      ;
+       :       .'          ;
+       `.     :            ;
+         )  _.".          ";
+       .'_.'   .'      __.,`.
       '"      ""''---'`    "'
 </script>
 
@@ -94,11 +94,26 @@
 
 <pre id="house">
 </pre>
-    <script src="plumo.js"></script>
+  <button id="listen-btn">Hey!</button>
+  <button id="eat-btn">Nourrir</button>
+  <button id="left-btn">Regarder</button>
+  <button id="leave-btn">Quitter</button>
+
+  <script src="plumo.js"></script>
   <script>
+
   Plumo.init( document.getElementById('house') )
+
+  const leaveBtn = document.getElementById('leave-btn')
+  const eatBtn = document.getElementById('eat-btn')
+  const leftBtn = document.getElementById('left-btn')
+  const listenBtn = document.getElementById('listen-btn')
+
+  leaveBtn.addEventListener('click', ()=> { Plumo.leave(); })
+  eatBtn.addEventListener('click', ()=> { Plumo.eat(); })
+  leftBtn.addEventListener('click', ()=> { Plumo.left(); })
+  listenBtn.addEventListener('click', ()=> { Plumo.listen(); })
 
   </script>
   </body>
 </html>
-
